@@ -37,7 +37,7 @@
     .left-panel{
         width: 50%;
         height: 100%;
-        background-image: url("img.jpg"); /* ← ضعي الصورة هنا */
+        background-image: url("img.jpg"); 
         background-size: cover;
         background-position: center;
         padding: 40px;
@@ -45,8 +45,6 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-
-        /* نفس انحناءات الصورة */
         border-top-right-radius: 180px;
         border-bottom-right-radius: 40px;
     }
@@ -156,7 +154,7 @@
 </div>
 
 <script>
-    // لا يوجد أي حركات – بناءً على طلبك
+    
 </script>
 
 </body>
