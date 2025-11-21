@@ -24,16 +24,13 @@
     }
 
     .container{
-        width: 900px;
-        height: 550px;
-        background: #111;
-        border-radius: 25px;
-        display: flex;
-        overflow: hidden;
-        position: relative;
+    width: 100%;
+    height: 100vh;
+    background: #111;
+    display: flex;
+    overflow: hidden;
     }
 
-    /* LEFT SIDE */
     .left-panel{
         width: 50%;
         height: 100%;
