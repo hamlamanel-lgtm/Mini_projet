@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard UI</title>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body{
+        background:#1f1f22;
+        height:100vh;
+        width:100vw;
+        overflow:hidden;
+        display:flex;
+    }
+
+
+    .sidebar{
+        width:90px;
+        background:#a476ff;
+        border-top-right-radius:40px;
+        border-bottom-right-radius:40px;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        padding-top:25px;
+        gap:20px;
+    }
+
+    .icon-box{
+        width:55px;
+        height:55px;
+        background:#8b5cf6;
+        border-radius:18px;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        cursor:pointer;
+        transition:0.2s;
+    }
+    .icon-box:hover{ filter:brightness(1.1); }
+
+    .bottom-icon{
+        margin-top:auto;
+        margin-bottom:20px;
+    }
+
+
+    .main{
+        flex:1;
+        padding:25px;
+        color:white;
+    }
+
+    .main-header{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+    }
+
+    .search-bar{
+        background:white;
+        padding:8px 15px;
+        border-radius:20px;
+        display:flex;
+        align-items:center;
+        color:#333;
+        width:180px;
+    }
+
+    .profile-circle{
+        width:40px;
+        height:40px;
+        border-radius:50%;
+        background:#8b5cf6;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        font-weight:bold;
+    }
+
+    /* MAIN CARDS */
+    .main-grid{
+        margin-top:25px;
+        display:grid;
+        grid-template-columns:1fr 250px;
+        gap:20px;
+    }
+
+    .big-card{
+        background:#a076ff;
+        height:300px;
+        border-radius:30px;
+    }
+
+    .column{
+        display:flex;
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .small-card{
+        background:#a076ff;
+        height:120px;
+        border-radius:25px;
+    }
+
+    .half-card{
+        background:#6d4faa;
+        height:160px;
+        border-radius:25px;
+    }
+
+
+    .bottom-row{
+        display:flex;
+        gap:20px;
+        margin-top:25px;
+    }
+
+    .bottom-card{
+        flex:1;
+        background:#131315;
+        height:150px;
+        border-radius:25px;
+        position:relative;
+    }
+
+    .floating-icon{
+        width:45px;
+        height:45px;
+        background:#a076ff;
+        border-radius:15px;
+        position:absolute;
+        top:-20px;
+        left:20px;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+
+
+    .friends-panel{
+        width:300px;
+        background:#2a2a2c;
+        padding:25px;
+        border-top-left-radius:40px;
+        border-bottom-left-radius:40px;
+        color:white;
+        display:flex;
+        flex-direction:column;
+    }
+
+    .friends-header{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:15px;
+    }
+
+    .toggle{
+        display:flex;
+        background:#1d1d1f;
+        padding:5px;
+        border-radius:20px;
+        margin-bottom:20px;
+    }
+
+    .toggle div{
+        flex:1;
+        text-align:center;
+        padding:6px;
+        border-radius:15px;
+        cursor:pointer;
+    }
+
+    .active-toggle{
+        background:#a076ff;
+    }
+
+    .friend-item{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding:10px 0;
+        border-bottom:1px solid #444;
+    }
+
+    .friend-circle{
+        width:40px;
+        height:40px;
+        background:#8b5cf6;
+        border-radius:50%;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        font-weight:bold;
+    }
+</style>
+</head>
+<body>
+
+
+<div class="sidebar">
+    <div class="icon-box">🔔</div>
+    <div class="icon-box">🏠</div>
+    <div class="icon-box">🎤</div>
+    <div class="icon-box">💲</div>
+    <div class="icon-box">👥</div>
+    <div class="icon-box">📝</div>
+
+    <div class="icon-box bottom-icon">↩</div>
+</div>
+
+
+<div class="main">
+    <div class="main-header">
+        <h2>Dashboard</h2>
+
+        <div style="display:flex; align-items:center; gap:15px;">
+            <div class="search-bar">🔍 Search</div>
+            <div class="profile-circle">M</div>
+        </div>
+    </div>
+
+    <div class="main-grid">
+        <div class="big-card"></div>
+
+        <div class="column">
+            <div class="small-card"></div>
+            <div class="half-card"></div>
+        </div>
+    </div>
+
+    <div class="bottom-row">
+        <div class="bottom-card">
+            <div class="floating-icon">🎤</div>
+        </div>
+        <div class="bottom-card">
+            <div class="floating-icon">💲</div>
+        </div>
+        <div class="bottom-card">
+            <div class="floating-icon">👥</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="friends-panel">
+    <div class="friends-header">
+        <h3>👥 Friends</h3>
+        <span style="font-size:13px; opacity:0.7;">View as</span>
+    </div>
+
+    <div class="toggle">
+        <div class="active-toggle">All</div>
+        <div>Online</div>
+    </div>
+
+    <!-- Friend List -->
+    <div class="friend-item">
+        <div style="display:flex; gap:10px; align-items:center;">
+            <div class="friend-circle">H</div> Hadjer Sid
+        </div>
+        ✉️
+    </div>
+
+    <div class="friend-item">
+        <div style="display:flex; gap:10px; align-items:center;">
+            <div class="friend-circle">I</div> Iman Atmania
+        </div>
+        ✉️
+    </div>
+
+    <div class="friend-item">
+        <div style="display:flex; gap:10px; align-items:center;">
+            <div class="friend-circle">M</div> Meriem Mennah
+        </div>
+        ✉️
+    </div>
+
+    <div class="friend-item">
+        <div style="display:flex; gap:10px; align-items:center;">
+            <div class="friend-circle">A</div> Amina Ouakour
+        </div>
+        ✉️
+    </div>
+
+    <div class="friend-item">
+        <div style="display:flex; gap:10px; align-items:center;">
+            <div class="friend-circle">M</div> Mountaha Rezka
+        </div>
+        ✉️
+    </div>
+</div>
+
+</body>
+</html>
