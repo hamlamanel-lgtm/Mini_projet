@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Club Login</title>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Stack+Sans+Text:wght@200..700&display=swap');
+
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Stack Sans Text", sans-serif;
+    }
+
+    body{
+        background: #1f1f1f;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container{
+        width: 900px;
+        height: 550px;
+        background: #111;
+        border-radius: 25px;
+        display: flex;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* LEFT SIDE */
+    .left-panel{
+        width: 50%;
+        height: 100%;
+        background-image: url("img.jpg"); /* ← ضعي الصورة هنا */
+        background-size: cover;
+        background-position: center;
+        padding: 40px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        /* نفس انحناءات الصورة */
+        border-top-right-radius: 180px;
+        border-bottom-right-radius: 40px;
+    }
+
+    .left-panel h1{
+        font-size: 38px;
+        margin-bottom: 15px;
+    }
+
+    .left-panel p{
+        font-size: 15px;
+        width: 85%;
+        margin-bottom: 30px;
+        line-height: 1.5;
+    }
+
+    /* RIGHT SIDE */
+    .right-panel{
+        width: 50%;
+        background: #111;
+        color: white;
+        padding: 60px 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .right-panel h2{
+        font-size: 30px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .right-panel label{
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
+    .input-box{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 18px;
+    }
+
+    .input-box input,
+    .input-box select{
+        padding: 10px;
+        border-radius: 6px;
+        border: none;
+        outline: none;
+    }
+
+    .login-btn{
+        background: #8b44dd;
+        border: none;
+        padding: 12px;
+        color: white;
+        width: 130px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 10px;
+        font-size: 15px;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <!-- LEFT SIDE -->
+    <div class="left-panel">
+        <h1>Hello, Welcome!</h1>
+        <p>
+            this is your student's club website, it will help you manage
+            events, tasks, and create a better campus experience for everyone.
+        </p>
+    </div>
+
+    <!-- RIGHT SIDE LOGIN -->
+    <div class="right-panel">
+        <h2>Login</h2>
+
+        <label>Email</label>
+        <div class="input-box">
+            <input type="email" placeholder="Enter your email">
+        </div>
+
+        <label>Password</label>
+        <div class="input-box">
+            <input type="password" placeholder="Enter your password">
+        </div>
+
+        <label>Role</label>
+        <div class="input-box">
+            <select>
+                <option>Member</option>
+                <option>Secretary</option>
+                <option>Treasurer</option>
+                <option>President</option>
+            </select>
+        </div>
+
+        <button class="login-btn">Log In</button>
+    </div>
+
+</div>
+
+<script>
+    // لا يوجد أي حركات – بناءً على طلبك
+</script>
+
+</body>
+</html>
