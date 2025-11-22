@@ -1,0 +1,2918 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Profile Edit — Updated Layout</title>
+  <style>
+    :root { --accent:#9D6EEB; --bg:#1C1D21; --panel:#37383C; --muted:#F3F3F3; }
+    html,body{height:100%;margin:0;font-family:Josefin Sans, Inter, system-ui, Arial; background:var(--bg); color:var(--muted);}    
+    .desktop-6{position:relative;min-height:100vh;max-width:1440px;margin:0 auto;}
+    .sidebar { position:absolute; left:50px; top:20px; width:148px; height:956px; background:var(--accent); border-radius:50px; display:flex; flex-direction:column; align-items:center; padding:18px; gap:32px; }
+    .sidebar .btn { width:61px;height:54px;border-radius:12px;background:transparent;border:0;display:flex;align-items:center;justify-content:center;cursor:pointer; box-shadow:0 4px 4px rgba(0,0,0,0.25), inset 0 4px 4px rgba(0,0,0,0.12);}    
+
+    .profile-area { position:absolute; left:260px; top:60px; right:260px; padding:24px; }
+
+    .profile-header { display:flex; justify-content:flex-end; align-items:center; width:100%; margin-bottom:40px; gap:18px; }
+
+    .profile-header .avatar-circle {
+      width:150px; height:150px; border-radius:50%; background:#d9c8ff; display:flex; align-items:center; justify-content:center;
+      font-size:58px; color:#6A45C2; font-weight:600;
+    }
+
+    .profile-header .info { text-align:right; margin-right:20px; }
+    .profile-header .info .name { font-size:38px; font-weight:600; }
+    .profile-header .info .handle { font-size:20px; opacity:0.9; }
+
+    hr { border:0; border-top:1px solid rgba(255,255,255,0.25); margin:20px 0; }
+
+    .profile-form { display:grid; grid-template-columns:1fr 1fr; gap:28px 60px; margin-top:10px; }
+    .field { display:flex; flex-direction:column; gap:8px; }
+    .field label { font-size:15px; }
+    .input { background:#5A5A5A; border:1px solid #2C2C2C; color:#EBFFEE; padding:10px; border-radius:8px; outline:none; font-size:16px; }
+
+    .gender-block { margin-top:10px; }
+    .gender-row { display:flex; flex-direction:row; gap:30px; margin-top:6px; }
+    .radio { display:flex; align-items:center; gap:8px; font-size:16px; }
+    .radio input { width:16px; height:16px; }
+
+    .done-area { position:absolute; right:40px; bottom:40px; }
+    .btn-done { width:160px;height:90px;border-radius:28px;background:var(--accent);display:flex;align-items:center;justify-content:center;border:0;color:white;font-size:22px;cursor:pointer; }
+  </style>
+</head>
+<body>
+  <div class="desktop-6">
+
+    <nav class="sidebar">
+      <div class="btn" data-action="home"><svg width="24" height="24" fill="none"><path d="M3 11.5L12 4l9 7.5" stroke="#fff"/><path d="M5 12v6a1 1 0 0 0 1 1h3v-5h6v5h3a1 1 0 0 0 1-1v-6" stroke="#fff"/></svg></div>
+      <div class="btn" data-action="events"><svg width="22" height="22" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="#fff"/><path d="M16 3v4M8 3v4" stroke="#fff"/></svg></div>
+      <div class="btn" data-action="audio"><svg width="22" height="22" fill="none"><path d="M12 1v11" stroke="#fff"/><rect x="7" y="4" width="10" height="12" rx="5" stroke="#fff"/></svg></div>
+      <div class="btn" data-action="finance"><svg width="22" height="22" fill="none"><path d="M12 1v22" stroke="#fff"/><path d="M17 7.5A4 4 0 0 0 12 5a4 4 0 0 0-5 2.5c0 2.5 4 3.5 5 4 1 0.5 5 1.5 5 4" stroke="#fff"/></svg></div>
+      <div class="btn" data-action="members"><svg width="22" height="22"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="#fff"/><circle cx="12" cy="7" r="4" stroke="#fff"/></svg></div>
+      <div class="btn" data-action="docs"><svg width="22" height="22"><path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke="#fff"/><path d="M14 2v6h6" stroke="#fff"/></svg></div>
+      <div style="flex:1"></div>
+      <div class="btn" data-action="logout"><svg width="22" height="22"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="#fff"/><path d="M16 17l5-5-5-5" stroke="#fff"/><path d="M21 12H9" stroke="#fff"/></svg></div>
+    </nav>
+
+    <main class="profile-area">
+
+      <div class="profile-header">
+        <div class="info">
+          <div class="name">Manel Hamla</div>
+          <div class="handle">hamla_manel</div>
+        </div>
+        <div class="avatar-circle">M</div>
+      </div>
+
+      <hr>
+
+      <form class="profile-form">
+        <div class="field">
+          <label>Last Name</label>
+          <input class="input" type="text" value="Hamla">
+        </div>
+
+        <div class="field">
+          <label>First Name</label>
+          <input class="input" type="text" value="Manel">
+        </div>
+
+        <div class="field">
+          <label>Birthday</label>
+          <input class="input" type="text" value="10/01/2004">
+        </div>
+
+        <div class="field">
+          <label>UserName</label>
+          <input class="input" type="text" value="hamla_manel">
+        </div>
+
+        <div class="field">
+          <label>Email</label>
+          <input class="input" type="email" value="hamlamanel10@gmail.com">
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <input class="input" type="password" value="*******">
+        </div>
+
+        <div class="field">
+          <label>Role</label>
+          <input class="input" type="text" value="Member active">
+        </div>
+
+        <div class="gender-block" style="grid-column:1 / 3;">
+          <label style="font-size:15px;">Gender</label>
+          <div class="gender-row">
+            <label class="radio"><input type="radio" name="gender" checked> Female</label>
+            <label class="radio"><input type="radio" name="gender"> Male</label>
+          </div>
+        </div>
+      </form>
+
+      <div class="done-area">
+        <button class="btn-done">Done</button>
+      </div>
+
+    </main>
+  </div>
+</body>
+
+css
+body{
+position: relative;
+width: 1440px;
+height: 1024px;
+
+background: #1C1D21;
+
+position: absolute;
+width: 148px;
+height: 956px;
+left: 50px;
+top: 20px;
+
+background: #9D6EEB;
+border-radius: 50px;
+
+position: absolute;
+width: 58px;
+height: 54px;
+left: 95px;
+top: 58px;
+
+background: #9D6EEB;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+filter: blur(2px);
+backdrop-filter: blur(2px);
+
+border-radius: 40px;
+
+position: absolute;
+width: 58px;
+height: 54px;
+left: 95px;
+top: 896px;
+
+background: #9D6EEB;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+filter: blur(2px);
+backdrop-filter: blur(2px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 40px;
+
+
+/* Line 1 */
+
+position: absolute;
+width: 90.01px;
+height: 0px;
+left: 79px;
+top: 143px;
+
+border: 0.5px solid #FFFFFF;
+transform: rotate(0.62deg);
+
+
+/* Line 2 */
+
+position: absolute;
+width: 90.01px;
+height: 0px;
+left: 78px;
+top: 875px;
+
+border: 0.5px solid #FFFFFF;
+transform: rotate(0.62deg);
+
+
+/* Rectangle 4 */
+
+position: absolute;
+width: 61px;
+height: 54px;
+left: 92px;
+top: 175px;
+
+background: #9D6EEB;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+filter: blur(2px);
+backdrop-filter: blur(2px);
+/* Note: backdrop-filter has minimal browser support */
+
+
+/* Rectangle 5 */
+
+position: absolute;
+width: 61px;
+height: 54px;
+left: 92px;
+top: 260px;
+
+background: #9D6EEB;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+filter: blur(2px);
+backdrop-filter: blur(2px);
+/* Note: backdrop-filter has minimal browser support */
+
+
+/* Rectangle 6 */
+
+position: absolute;
+width: 61px;
+height: 54px;
+left: 92px;
+top: 345px;
+
+background: #9D6EEB;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+filter: blur(2px);
+backdrop-filter: blur(2px);
+/* Note: backdrop-filter has minimal browser support */
+
+
+/* Rectangle 7 */
+
+position: absolute;
+width: 61px;
+height: 54px;
+left: 95px;
+top: 430px;
+
+background: #9D6EEB;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+filter: blur(2px);
+backdrop-filter: blur(2px);
+/* Note: backdrop-filter has minimal browser support */
+
+
+/* Rectangle 8 */
+
+position: absolute;
+width: 61px;
+height: 54px;
+left: 95px;
+top: 515px;
+
+background: #9D6EEB;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+filter: blur(2px);
+backdrop-filter: blur(2px);
+/* Note: backdrop-filter has minimal browser support */
+
+
+/* Icon button togglable - standard
+
+Standard Icon buttons are low-emphasis buttons.
+They are used for the lowest priority actions, especially when presenting multiple options.
+
+Icon buttons can be placed on a variety of backgrounds. Until the button is interacted with, its container isn’t visible.
+*/
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+isolation: isolate;
+
+position: absolute;
+width: 136px;
+height: 136px;
+left: 58px;
+top: 19px;
+
+
+
+/* Content */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 136px;
+height: 136px;
+
+border-radius: 28px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+z-index: 0;
+
+
+/* State-layer */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 136px;
+height: 136px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Icon */
+
+width: 40px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* icon */
+
+position: absolute;
+left: 16.67%;
+right: 16.67%;
+top: 8.33%;
+bottom: 8.33%;
+
+/* M3/white */
+background: #FFFFFF;
+
+
+/* Icon */
+
+position: absolute;
+width: 40px;
+height: 40px;
+left: calc(50% - 40px/2);
+top: calc(50% - 40px/2);
+
+opacity: 0;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+z-index: 1;
+
+
+/* icon */
+
+position: absolute;
+left: 16.67%;
+right: 16.67%;
+top: 8.33%;
+bottom: 8.33%;
+
+
+
+/* Icon button togglable - standard
+
+Standard Icon buttons are low-emphasis buttons.
+They are used for the lowest priority actions, especially when presenting multiple options.
+
+Icon buttons can be placed on a variety of backgrounds. Until the button is interacted with, its container isn’t visible.
+*/
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+isolation: isolate;
+
+position: absolute;
+width: 136px;
+height: 136px;
+left: 55px;
+top: 132px;
+
+
+
+/* Content */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 136px;
+height: 136px;
+
+border-radius: 100px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+z-index: 0;
+
+
+/* State-layer */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 136px;
+height: 136px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Icon
+
+Keywords: house, living
+*/
+
+width: 40px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Icon */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 8.33%;
+bottom: 8.33%;
+
+border: 4px solid #EBFFEE;
+
+
+/* Icon
+
+Keywords: house, living
+*/
+
+position: absolute;
+width: 40px;
+height: 40px;
+left: calc(50% - 40px/2);
+top: calc(50% - 40px/2);
+
+opacity: 0;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+z-index: 1;
+
+
+/* Icon */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 8.33%;
+bottom: 8.33%;
+
+border: 4px solid #EBFFEE;
+
+
+/* Icon button togglable - standard
+
+Standard Icon buttons are low-emphasis buttons.
+They are used for the lowest priority actions, especially when presenting multiple options.
+
+Icon buttons can be placed on a variety of backgrounds. Until the button is interacted with, its container isn’t visible.
+*/
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+isolation: isolate;
+
+position: absolute;
+width: 136px;
+height: 136px;
+left: 56px;
+top: 850px;
+
+
+
+/* Content */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 136px;
+height: 136px;
+
+border-radius: 100px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+z-index: 0;
+
+
+/* State-layer */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 136px;
+height: 136px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Icon
+
+Keywords: sign out, arrow, exit
+*/
+
+width: 40px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Icon */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 4px solid #F3F3F3;
+
+
+/* Icon
+
+Keywords: sign out, arrow, exit
+*/
+
+position: absolute;
+width: 40px;
+height: 40px;
+left: calc(50% - 40px/2);
+top: calc(50% - 40px/2);
+
+opacity: 0;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+z-index: 1;
+
+
+/* Icon */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 4px solid #F3F3F3;
+
+
+/* Icon button togglable - standard
+
+Standard Icon buttons are low-emphasis buttons.
+They are used for the lowest priority actions, especially when presenting multiple options.
+
+Icon buttons can be placed on a variety of backgrounds. Until the button is interacted with, its container isn’t visible.
+*/
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+isolation: isolate;
+
+position: absolute;
+width: 136px;
+height: 136px;
+left: 56px;
+top: 306px;
+
+
+
+/* Content */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 136px;
+height: 136px;
+
+border-radius: 100px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+z-index: 0;
+
+
+/* State-layer */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 136px;
+height: 136px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Icon
+
+Keywords: currency, money, payment
+*/
+
+width: 40px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Icon */
+
+position: absolute;
+left: 25%;
+right: 25%;
+top: 4.17%;
+bottom: 4.17%;
+
+border: 4px solid #F3F3F3;
+
+
+/* Icon
+
+Keywords: currency, money, payment
+*/
+
+position: absolute;
+width: 40px;
+height: 40px;
+left: calc(50% - 40px/2);
+top: calc(50% - 40px/2);
+
+opacity: 0;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+z-index: 1;
+
+
+/* Icon */
+
+position: absolute;
+left: 25%;
+right: 25%;
+top: 4.17%;
+bottom: 4.17%;
+
+border: 4px solid #F3F3F3;
+
+
+/* Icon button togglable - standard
+
+Standard Icon buttons are low-emphasis buttons.
+They are used for the lowest priority actions, especially when presenting multiple options.
+
+Icon buttons can be placed on a variety of backgrounds. Until the button is interacted with, its container isn’t visible.
+*/
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+isolation: isolate;
+
+position: absolute;
+width: 136px;
+height: 136px;
+left: 56px;
+top: 222px;
+
+
+
+/* Content */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 136px;
+height: 136px;
+
+border-radius: 100px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+z-index: 0;
+
+
+/* State-layer */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 136px;
+height: 136px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Icon
+
+Keywords: record, sound, listen
+*/
+
+width: 40px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Icon */
+
+position: absolute;
+left: 20.83%;
+right: 20.83%;
+top: 4.17%;
+bottom: 4.17%;
+
+border: 4px solid #F5F5F5;
+
+
+/* Icon
+
+Keywords: record, sound, listen
+*/
+
+position: absolute;
+width: 40px;
+height: 40px;
+left: calc(50% - 40px/2);
+top: calc(50% - 40px/2);
+
+opacity: 0;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+z-index: 1;
+
+
+/* Icon */
+
+position: absolute;
+left: 20.83%;
+right: 20.83%;
+top: 4.17%;
+bottom: 4.17%;
+
+border: 4px solid #F5F5F5;
+
+
+/* Icon button togglable - standard
+
+Standard Icon buttons are low-emphasis buttons.
+They are used for the lowest priority actions, especially when presenting multiple options.
+
+Icon buttons can be placed on a variety of backgrounds. Until the button is interacted with, its container isn’t visible.
+*/
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+isolation: isolate;
+
+position: absolute;
+width: 136px;
+height: 136px;
+left: 58px;
+top: 391px;
+
+
+
+/* Content */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 136px;
+height: 136px;
+
+border-radius: 100px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+z-index: 0;
+
+
+/* State-layer */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 136px;
+height: 136px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Icon
+
+Keywords: group
+*/
+
+width: 40px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Icon */
+
+position: absolute;
+left: 4.17%;
+right: 4.17%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 4px solid #F3F3F3;
+
+
+/* Icon
+
+Keywords: person, account
+*/
+
+position: absolute;
+width: 40px;
+height: 40px;
+left: calc(50% - 40px/2);
+top: calc(50% - 40px/2);
+
+opacity: 0;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+z-index: 1;
+
+
+/* Icon */
+
+position: absolute;
+left: 16.67%;
+right: 16.67%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 4px solid #F3F3F3;
+
+
+/* Icon button togglable - standard
+
+Standard Icon buttons are low-emphasis buttons.
+They are used for the lowest priority actions, especially when presenting multiple options.
+
+Icon buttons can be placed on a variety of backgrounds. Until the button is interacted with, its container isn’t visible.
+*/
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+isolation: isolate;
+
+position: absolute;
+width: 136px;
+height: 136px;
+left: 58px;
+top: 472px;
+
+
+
+/* Content */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 136px;
+height: 136px;
+
+border-radius: 100px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+z-index: 0;
+
+
+/* State-layer */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 136px;
+height: 136px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Icon
+
+Keywords: copy
+*/
+
+width: 40px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Icon */
+
+position: absolute;
+left: 16.67%;
+right: 16.67%;
+top: 8.33%;
+bottom: 8.33%;
+
+border: 4px solid #F3F3F3;
+
+
+/* Icon
+
+Keywords: copy
+*/
+
+position: absolute;
+width: 40px;
+height: 40px;
+left: calc(50% - 40px/2);
+top: calc(50% - 40px/2);
+
+opacity: 0;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+z-index: 1;
+
+
+/* Icon */
+
+position: absolute;
+left: 16.67%;
+right: 16.67%;
+top: 8.33%;
+bottom: 8.33%;
+
+border: 4px solid #F3F3F3;
+
+
+/* Generic avatar
+
+Profile avatar 
+*/
+
+position: absolute;
+width: 150px;
+height: 150px;
+left: 1169px;
+top: 87px;
+
+
+
+/* Background */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* M3/sys/light/primary-container */
+background: #EADDFF;
+
+
+/* Initial */
+
+position: absolute;
+width: 40px;
+height: 40px;
+left: calc(50% - 40px/2);
+top: calc(50% - 40px/2);
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+font-size: 64px;
+line-height: 24px;
+/* or 38% */
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.1px;
+
+/* M3/sys/light/on-primary-container */
+color: #4F378A;
+
+
+
+/* Line 8 */
+
+position: absolute;
+width: 1062.01px;
+height: 0px;
+left: 280px;
+top: 304px;
+
+border: 1px solid #FFFFFF;
+transform: rotate(0.22deg);
+
+
+/* Input Field */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 8px;
+
+position: absolute;
+width: 387px;
+height: 85px;
+left: 944px;
+top: 325px;
+
+
+
+/* Label */
+
+width: 387px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #F3F3F3;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Description */
+
+display: none;
+width: 240px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #757575;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Input */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 12px 16px;
+
+width: 387px;
+min-width: 240px;
+height: 40px;
+
+background: #5A5A5A;
+border: 1px solid #D9D9D9;
+border-radius: 8px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Value */
+
+width: 355px;
+height: 16px;
+
+/* Single Line/Body Base
+
+Used for any text element where you need 100% line height. For example, an input field, a label.
+*/
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 100%;
+/* identical to box height, or 16px */
+
+color: #F3F3F3;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Error */
+
+display: none;
+width: 37px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #1E1E1E;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Input Field */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 8px;
+
+position: absolute;
+width: 387px;
+height: 70px;
+left: 280px;
+top: 325px;
+
+
+
+/* Label */
+
+width: 387px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #F5F5F5;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Description */
+
+display: none;
+width: 240px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #757575;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Input */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 12px 16px;
+
+width: 387px;
+min-width: 240px;
+height: 40px;
+
+background: #5A5A5A;
+border: 1px solid #2C2C2C;
+border-radius: 8px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Value */
+
+width: 355px;
+height: 16px;
+
+/* Single Line/Body Base
+
+Used for any text element where you need 100% line height. For example, an input field, a label.
+*/
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 100%;
+/* identical to box height, or 16px */
+
+color: #F5F5F5;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Error */
+
+display: none;
+width: 37px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #1E1E1E;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Input Field */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 8px;
+
+position: absolute;
+width: 387px;
+height: 70px;
+left: 280px;
+top: 617px;
+
+
+
+/* Label */
+
+width: 387px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #F5F5F5;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Description */
+
+display: none;
+width: 240px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #757575;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Input */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 12px 16px;
+
+width: 387px;
+min-width: 240px;
+height: 40px;
+
+background: #5A5A5A;
+border: 1px solid #2C2C2C;
+border-radius: 8px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Value */
+
+width: 355px;
+height: 16px;
+
+/* Single Line/Body Base
+
+Used for any text element where you need 100% line height. For example, an input field, a label.
+*/
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 100%;
+/* identical to box height, or 16px */
+
+color: #F5F5F5;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Error */
+
+display: none;
+width: 37px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #1E1E1E;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Input Field */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 8px;
+
+position: absolute;
+width: 387px;
+height: 78px;
+left: 280px;
+top: 420px;
+
+
+
+/* Label */
+
+width: 387px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #EBFFEE;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Description */
+
+display: none;
+width: 240px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #757575;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Input */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 12px 16px;
+
+width: 387px;
+min-width: 240px;
+height: 40px;
+
+background: #5A5A5A;
+border: 1px solid #D9D9D9;
+border-radius: 8px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Value */
+
+width: 355px;
+height: 16px;
+
+/* Single Line/Body Base
+
+Used for any text element where you need 100% line height. For example, an input field, a label.
+*/
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 100%;
+/* identical to box height, or 16px */
+
+color: #EBFFEE;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Error */
+
+display: none;
+width: 37px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #1E1E1E;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Manel Hamla */
+
+position: absolute;
+width: 238px;
+height: 24px;
+left: 915px;
+top: 129px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+font-size: 40px;
+line-height: 24px;
+/* identical to box height, or 60% */
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.1px;
+
+color: #FFFFFF;
+
+
+
+/* hamla_manel */
+
+position: absolute;
+width: 145px;
+height: 24px;
+left: 1008px;
+top: 176px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 24px;
+/* identical to box height, or 100% */
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.1px;
+
+color: #FFFFFF;
+
+
+
+/* Input Field */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 8px;
+
+position: absolute;
+width: 387px;
+height: 78px;
+left: 944px;
+top: 418px;
+
+
+
+/* Label */
+
+width: 387px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #EBFFEE;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Description */
+
+display: none;
+width: 240px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #757575;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Input */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 12px 16px;
+
+width: 387px;
+min-width: 240px;
+height: 40px;
+
+background: #5A5A5A;
+border: 1px solid #D9D9D9;
+border-radius: 8px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Value */
+
+width: 355px;
+height: 16px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 100%;
+/* identical to box height, or 16px */
+
+color: #EBFFEE;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Error */
+
+display: none;
+width: 37px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #1E1E1E;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Input Field */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 8px;
+
+position: absolute;
+width: 387px;
+height: 78px;
+left: 280px;
+top: 523px;
+
+
+
+/* Label */
+
+width: 387px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #EBFFEE;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Description */
+
+display: none;
+width: 240px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #757575;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Input */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 12px 16px;
+
+width: 387px;
+min-width: 240px;
+height: 40px;
+
+background: #5A5A5A;
+border: 1px solid #D9D9D9;
+border-radius: 8px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Value */
+
+width: 355px;
+height: 16px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 100%;
+/* identical to box height, or 16px */
+
+color: #EBFFEE;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Error */
+
+display: none;
+width: 37px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #1E1E1E;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Input Field */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 8px;
+
+position: absolute;
+width: 387px;
+height: 78px;
+left: 944px;
+top: 523px;
+
+
+
+/* Label */
+
+width: 387px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #EBFFEE;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Description */
+
+display: none;
+width: 240px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #757575;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Input */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 12px 16px;
+
+width: 387px;
+min-width: 240px;
+height: 40px;
+
+background: #5A5A5A;
+border: 1px solid #D9D9D9;
+border-radius: 8px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Value */
+
+width: 355px;
+height: 16px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 100%;
+/* identical to box height, or 16px */
+
+color: #EBFFEE;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Error */
+
+display: none;
+width: 37px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #1E1E1E;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Gender */
+
+position: absolute;
+width: 58px;
+height: 22px;
+left: 944px;
+top: 632px;
+
+/* Body Strong */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #FFFFFF;
+
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+position: absolute;
+width: 340px;
+height: 44px;
+left: 944px;
+top: 671px;
+
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 12px;
+
+width: 340px;
+height: 22px;
+
+
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Radio */
+
+box-sizing: border-box;
+
+width: 16px;
+height: 16px;
+
+background: #E6E6E6;
+border: 1px solid #F5F5F5;
+border-radius: 9999px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Radio */
+
+position: absolute;
+width: 10px;
+height: 10px;
+left: calc(50% - 10px/2);
+top: calc(50% - 10px/2);
+
+background: #F5F5F5;
+
+
+/* Label */
+
+width: 312px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #F3F3F3;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 1;
+
+
+/* Description Row */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 12px;
+
+width: 340px;
+height: 22px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Space */
+
+width: 16px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Description */
+
+width: 312px;
+height: 22px;
+
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 1;
+
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+position: absolute;
+width: 340px;
+height: 44px;
+left: 1161px;
+top: 671px;
+
+
+
+/* Checkbox and Label */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 12px;
+
+width: 340px;
+height: 22px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Radio */
+
+box-sizing: border-box;
+
+width: 16px;
+height: 16px;
+
+background: #E6E6E6;
+border: 1px solid #F5F5F5;
+border-radius: 9999px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Radio */
+
+position: absolute;
+width: 10px;
+height: 10px;
+left: calc(50% - 10px/2);
+top: calc(50% - 10px/2);
+
+background: #1E1E1E;
+
+
+/* Label */
+
+width: 312px;
+height: 22px;
+
+/* Body Base */
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #F3F3F3;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 1;
+
+
+/* Description Row */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 12px;
+
+width: 340px;
+height: 22px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Space */
+
+width: 16px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Description */
+
+width: 312px;
+height: 22px;
+
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 1;
+
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+position: absolute;
+width: 181px;
+height: 106px;
+left: 1161px;
+top: 880px;
+
+
+
+/* Content */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 152px;
+height: 96px;
+
+background: #9D6EEB;
+border-radius: 28px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* State-layer */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 32px 48px;
+gap: 12px;
+
+width: 152px;
+height: 96px;
+
+/* M3/state-layers/light/onPrimary/opacity-0.08 */
+background: rgba(255, 255, 255, 0.08);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Icon */
+
+display: none;
+width: 32px;
+height: 32px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Label */
+
+width: 56px;
+height: 32px;
+
+/* M3/headline/small */
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 32px;
+/* identical to box height, or 133% */
+display: flex;
+align-items: center;
+
+/* M3/sys/light/on-primary */
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+}
+
+
+javascript
+
+(() => {
+  'use strict';
+  const DEMO_EVENTS = [
+    { id: 'e1', title: 'Orientation Meetup', date: '2025-09-10', time: '18:00', desc: 'Meet other members, learn about clubs and activities.' },
+    { id: 'e2', title: 'Coding Workshop', date: '2025-10-02', time: '14:00', desc: 'Intro to web development using HTML/CSS/JS.' },
+    { id: 'e3', title: 'Community Service Day', date: '2025-11-05', time: '09:00', desc: 'Join us for a day of volunteering in the neighbourhood.' },
+    { id: 'e4', title: 'Guest Lecture: AI in Education', date: '2025-11-21', time: '16:00', desc: 'Industry speaker: Dr. Smith.' }
+  ];
+
+  const DEMO_NOTIFICATIONS = [
+    { id: 'n1', text: 'Your membership was approved', ts: Date.now() - 1000 * 60 * 60 },
+    { id: 'n2', text: 'New event posted: Coding Workshop', ts: Date.now() - 1000 * 60 * 60 * 6 },
+    { id: 'n3', text: 'Volunteer signup confirmed', ts: Date.now() - 1000 * 60 * 60 * 24 }
+  ];
+
+  /* =========================
+     Small helpers
+     ========================= */
+  function el(tag = 'div', attrs = {}, children = []) {
+    const e = document.createElement(tag);
+    for (const k in attrs) {
+      if (k === 'class') e.className = attrs[k];
+      else if (k === 'html') e.innerHTML = attrs[k];
+      else e.setAttribute(k, attrs[k]);
+    }
+    (Array.isArray(children) ? children : [children]).forEach(c => {
+      if (!c) return;
+      if (typeof c === 'string') e.appendChild(document.createTextNode(c));
+      else if (c instanceof Node) e.appendChild(c);
+    });
+    return e;
+  }
+
+  function escapeHtml(s) {
+    if (s === null || s === undefined) return '';
+    return String(s).replace(/[&<>"'`=\/]/g, function (c) {
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','/':'&#x2F;','`':'&#x60;','=':'&#x3D;'}[c];
+    });
+  }
+
+  function formatDate(iso) {
+    try {
+      const d = new Date(iso + 'T00:00:00');
+      return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    } catch (e) { return iso; }
+  }
+
+  function timeAgo(ts) {
+    const now = Date.now();
+    const diff = Math.floor((now - ts) / 1000);
+    if (diff < 60) return `${diff}s ago`;
+    if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+    if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+    return `${Math.floor(diff / 86400)}d ago`;
+  }
+
+  /* =========================
+     App state & nodes
+     ========================= */
+  const state = {
+    page: 'home',
+    events: (DEMO_EVENTS || []).slice(),
+    notifications: (DEMO_NOTIFICATIONS || []).slice(),
+    rightPanelOpen: false,
+    modalOpen: false
+  };
+
+  // Query nodes that exist in your HTML
+  const nodes = {
+    sidebarBtns: Array.from(document.querySelectorAll('.sidebar .btn')),
+    main: document.querySelector('.profile-area') || document.querySelector('main') || document.body,
+    rightPanel: document.querySelector('.right, .right-panel') || null
+  };
+
+  /* =========================
+     Modal (kept small & accessible)
+     ========================= */
+  const Modal = (function(){
+    let container = null, lastFocused = null;
+    function createContainer() {
+      if (container) return container;
+      container = el('div', { class: 'sc-modal-container', 'aria-hidden': 'true' });
+      container.style.cssText = 'position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:9000;pointer-events:none;';
+      document.body.appendChild(container);
+      return container;
+    }
+    function open(content) {
+      if (state.modalOpen) return;
+      lastFocused = document.activeElement;
+      const c = createContainer();
+      c.innerHTML = '';
+      const overlay = el('div', { class: 'sc-modal-overlay' });
+      overlay.style.cssText = 'position:absolute;inset:0;background:rgba(0,0,0,0.45);pointer-events:auto;';
+      const dialog = el('div', { class: 'sc-modal', role: 'dialog', 'aria-modal': 'true' });
+      dialog.style.cssText = 'min-width:320px;max-width:920px;padding:18px;border-radius:10px;background:var(--panel,#2b2b2b);color:var(--white,#fff);pointer-events:auto;box-shadow:0 10px 30px rgba(0,0,0,0.5);transform:translateY(8px);opacity:0;transition:all .18s ease';
+      if (typeof content === 'string') dialog.innerHTML = content;
+      else dialog.appendChild(content);
+      const closeBtn = el('button', { class: 'sc-modal-close', 'aria-label': 'Close' }, '✕');
+      closeBtn.style.cssText = 'position:absolute;right:8px;top:8px;background:transparent;border:0;color:inherit;font-size:18px;cursor:pointer';
+      closeBtn.addEventListener('click', close);
+      c.appendChild(overlay);
+      c.appendChild(dialog);
+      dialog.appendChild(closeBtn);
+      c.style.pointerEvents = 'auto';
+      requestAnimationFrame(() => {
+        c.style.opacity = '1';
+        c.setAttribute('aria-hidden','false');
+        dialog.style.opacity = '1';
+        dialog.style.transform = 'translateY(0)';
+      });
+      trapFocus(dialog);
+      overlay.addEventListener('click', close);
+      state.modalOpen = true;
+    }
+    function close() {
+      if (!state.modalOpen || !container) return;
+      container.style.opacity = '0';
+      container.setAttribute('aria-hidden','true');
+      const dialog = container.querySelector('.sc-modal');
+      if (dialog) {
+        dialog.style.opacity = '0';
+        dialog.style.transform = 'translateY(8px)';
+      }
+      setTimeout(() => {
+        if (container) container.remove();
+        container = null;
+        state.modalOpen = false;
+        if (lastFocused && lastFocused.focus) lastFocused.focus();
+      }, 240);
+    }
+    function trapFocus(root) {
+      const focusable = root.querySelectorAll('a[href],button:not([disabled]),textarea, input, [tabindex]:not([tabindex="-1"])');
+      const arr = Array.prototype.slice.call(focusable);
+      if (arr.length) arr[0].focus();
+      function handler(e) {
+        if (e.key === 'Tab') {
+          const first = arr[0], last = arr[arr.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault(); last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault(); first.focus();
+          }
+        } else if (e.key === 'Escape') {
+          close();
+        }
+      }
+      root.addEventListener('keydown', handler);
+    }
+    return { open, close };
+  })();
+
+  /* =========================
+     Toast
+     ========================= */
+  let toastEl = null;
+  function showToast(msg, ms = 2200) {
+    if (toastEl) toastEl.remove();
+    toastEl = el('div', { class: 'sc-toast', html: escapeHtml(msg) });
+    toastEl.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%);bottom:36px;background:#222;padding:10px 14px;border-radius:10px;color:white;z-index:10000;opacity:0;transition:opacity .22s';
+    document.body.appendChild(toastEl);
+    requestAnimationFrame(() => toastEl.style.opacity = '1');
+    setTimeout(() => {
+      if (!toastEl) return;
+      toastEl.style.opacity = '0';
+      setTimeout(() => { if (toastEl) { toastEl.remove(); toastEl = null; } }, 260);
+    }, ms);
+  }
+
+  /* =========================
+     Right panel (if any)
+     ========================= */
+  function toggleRightPanel(force) {
+    const rp = nodes.rightPanel;
+    if (!rp) return;
+    const next = (typeof force !== 'undefined') ? !!force : !state.rightPanelOpen;
+    state.rightPanelOpen = next;
+    if (next) {
+      rp.classList.add('open');
+      rp.style.transform = 'translateX(0)';
+      rp.setAttribute('aria-hidden', 'false');
+    } else {
+      rp.classList.remove('open');
+      rp.style.transform = 'translateX(12px)';
+      rp.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  /* =========================
+     Sidebar wiring
+     ========================= */
+  function setActiveSidebar(btn) {
+    nodes.sidebarBtns.forEach(b => {
+      b.classList.remove('active');
+      // remove inline active glow style
+      b.style.boxShadow = '';
+      b.style.outline = '';
+    });
+    if (btn) {
+      btn.classList.add('active');
+      // visual glow: set subtle outline + shadow to emulate screenshot
+      btn.style.outline = '3px solid rgba(255,255,255,0.06)';
+      btn.style.boxShadow = '0 6px 18px rgba(0,0,0,0.25), inset 0 6px 12px rgba(0,0,0,0.12)';
+    }
+  }
+
+  function wireSidebar() {
+    const btns = nodes.sidebarBtns || [];
+    btns.forEach(b => {
+      b.addEventListener('click', (e) => {
+        e.preventDefault();
+        const action = (b.dataset && b.dataset.action) ? b.dataset.action.toLowerCase() : (b.getAttribute('data-action') || '').toLowerCase();
+        setActiveSidebar(b);
+        switch (action) {
+          case 'home':
+            showToast('Home (no page)'); break;
+          case 'events':
+            showToast('Events (no page)'); break;
+          case 'audio':
+            showToast('Audio (no action)'); break;
+          case 'finance':
+            showToast('Finance (no action)'); break;
+          case 'members':
+            showToast('Members (no page)'); break;
+          case 'docs':
+            showToast('Documents (no action)'); break;
+          case 'logout':
+            performLogout(); break;
+          default:
+            // fallback
+            console.log('sidebar click', action);
+            break;
+        }
+      });
+    });
+  }
+
+  /* =========================
+     Avatar (click to upload preview)
+     ========================= */
+  function wireAvatar() {
+    const avatar = document.querySelector('.avatar-circle');
+    if (!avatar) return;
+    // create hidden file input
+    let fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    fileInput.style.display = 'none';
+    document.body.appendChild(fileInput);
+
+    fileInput.addEventListener('change', (e) => {
+      const f = e.target.files && e.target.files[0];
+      if (!f) return;
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        avatar.style.backgroundImage = `url('${ev.target.result}')`;
+        avatar.style.backgroundSize = 'cover';
+        avatar.style.backgroundPosition = 'center';
+        // hide the initial letter if any
+        avatar.textContent = '';
+      };
+      reader.readAsDataURL(f);
+    });
+
+    avatar.addEventListener('click', () => fileInput.click());
+  }
+
+  /* =========================
+     Gender selection highlight
+     ========================= */
+  function wireGender() {
+    const genderBlock = document.querySelector('.gender-block');
+    if (!genderBlock) return;
+    const radios = Array.from(genderBlock.querySelectorAll('input[type="radio"]'));
+    const labels = radios.map(r => r.closest('label') || r.parentElement);
+
+    function updateUI(selectedRadio) {
+      labels.forEach(lbl => {
+        if (!lbl) return;
+        lbl.style.opacity = '0.9';
+        lbl.style.color = ''; // default
+        lbl.style.boxShadow = '';
+        lbl.style.borderRadius = '';
+      });
+      if (selectedRadio) {
+        const selLabel = selectedRadio.closest('label') || selectedRadio.parentElement;
+        if (selLabel) {
+          selLabel.style.boxShadow = '0 6px 18px rgba(157,110,235,0.14)';
+          selLabel.style.borderRadius = '8px';
+        }
+      }
+    }
+
+    radios.forEach(r => {
+      r.addEventListener('change', () => updateUI(r));
+      // initialize
+      if (r.checked) updateUI(r);
+    });
+  }
+
+  /* =========================
+     Small utility to read input values by label text
+     (useful because form inputs in provided HTML don't have IDs)
+     ========================= */
+  function getFieldValueByLabel(labelStart) {
+    const fields = Array.from(document.querySelectorAll('.field'));
+    for (const f of fields) {
+      const label = f.querySelector('label');
+      if (!label) continue;
+      if (label.textContent.trim().toLowerCase().startsWith(labelStart.toLowerCase())) {
+        const input = f.querySelector('input, textarea, select');
+        if (input) return input.value.trim();
+      }
+    }
+    return '';
+  }
+
+  /* =========================
+     Done button behaviour (validate & show toast)
+     ========================= */
+  function wireDoneButton() {
+    const done = document.querySelector('.btn-done');
+    if (!done) return;
+    done.addEventListener('click', (e) => {
+      e.preventDefault();
+      const first = getFieldValueByLabel('First Name') || getFieldValueByLabel('First');
+      const role = getFieldValueByLabel('Role');
+      const email = getFieldValueByLabel('Email') || getFieldValueByLabel('E-mail');
+
+      // basic validation
+      if (!first) { showToast('First name is required'); return; }
+      if (!role)  { showToast('Role is required'); return; }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast('Please provide a valid email'); return; }
+
+      // simulate save (replace with actual save call)
+      showToast('Profile updated successfully');
+      console.log('Saved profile:', { first, role, email });
+
+      // optionally animate button as feedback
+      done.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(-6px)' }, { transform: 'translateY(0)' }], { duration: 320 });
+    });
+  }
+
+  /* =========================
+     Logout (simulated)
+     ========================= */
+  function performLogout() {
+    const overlay = el('div');
+    overlay.style.cssText = 'position:fixed;inset:0;background:var(--bg,#111);z-index:10000;display:flex;align-items:center;justify-content:center;color:white;font-size:20px;opacity:0;transition:opacity .4s';
+    overlay.innerHTML = '<div>Signing out…</div>';
+    document.body.appendChild(overlay);
+    requestAnimationFrame(() => overlay.style.opacity = '1');
+    setTimeout(() => {
+      overlay.innerHTML = '<div>Signed out — returning to home</div>';
+      setTimeout(() => {
+        overlay.style.opacity = '0';
+        setTimeout(() => overlay.remove(), 300);
+        showToast('Signed out (simulated)');
+      }, 800);
+    }, 700);
+  }
+
+  /* =========================
+     Init
+     ========================= */
+  function init() {
+    // wire sidebar & button states
+    wireSidebar();
+
+    // wire avatar upload / preview
+    wireAvatar();
+
+    // wire gender highlight
+    wireGender();
+
+    // wire done button
+    wireDoneButton();
+
+    // expose some quick debug hooks
+    window.SC = Object.assign(window.SC || {}, {
+      state,
+      performLogout,
+      showToast,
+      Modal
+    });
+
+    // try to set initial active sidebar (home)
+    if (nodes.sidebarBtns && nodes.sidebarBtns.length) {
+      const homeBtn = nodes.sidebarBtns.find(b => (b.dataset && b.dataset.action && b.dataset.action.toLowerCase() === 'home'));
+      setActiveSidebar(homeBtn || nodes.sidebarBtns[0]);
+    }
+  }
+
+  // Run on DOM ready (works with defer script)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();
+
+</html>
