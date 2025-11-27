@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Membership Fees</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1f1f23;
+      color: #ffffff;
+    }
+
+    .sidebar{
+        width:90px;
+        background:#a476ff;
+        border-top-right-radius:40px;
+        border-bottom-right-radius:40px;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        padding-top:25px;
+        gap:20px;
+        position: fixed;  
+        left: 0;
+        top: 0;
+        height: 96vh;
+    }
+
+    .icon-box{
+        width:55px;
+        height:55px;
+        background:#8b5cf6;
+        border-radius:18px;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        cursor:pointer;
+        transition:0.2s;
+    }
+
+    .bottom-icon{
+        color: black;
+        margin-top:auto;
+        margin-bottom:20px;
+    }
+
+    .container {
+      margin-left: 150px; 
+      padding: 40px;
+    }
+
+    table {
+      width: 80%;
+      background-color: #2a2a2e;
+      border-radius: 15px;
+      overflow: hidden;
+      border-collapse: collapse;
+    }
+
+    table th, table td {
+      padding: 18px;
+      border-bottom: 1px solid #4a4a4f;
+    }
+
+    .pay-now {
+      position: absolute;
+      bottom: 30px;
+      right: 40px;
+      background-color: #e5d4ff;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+      color: #5a3392;
+      cursor: pointer;
+    }
+
+    /* =======================
+       NEW MODAL STYLE HERE
+    ======================== */
+
+    #paymentPopup {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .popup-box {
+      width: 600px;
+      background: #11131d;
+      padding: 30px;
+      border-radius: 18px;
+      color: white;
+      box-shadow: 0 0 40px rgba(0,0,0,0.5);
+      position: relative;
+    }
+
+    .popup-box h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .field label {
+      font-size: 14px;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      padding: 12px;
+      background: #0f1019;
+      border: 1px solid #2e3144;
+      border-radius: 10px;
+      color: white;
+      font-size: 14px;
+    }
+
+    .btn-row {
+      display: flex;
+      justify-content: flex-end;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .cancel-btn,
+    .save-btn {
+      padding: 10px 22px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .cancel-btn {
+      background: #2e3144;
+      color: white;
+    }
+
+    .save-btn {
+      background: #8b5cf6;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<aside class="sidebar">
+    <div class="icon-box">🔔</div>
+    <div class="icon-box">🏠</div>
+    <div class="icon-box">🎤</div>
+    <div class="icon-box">💲</div>
+    <div class="icon-box">👥</div>
+    <div class="icon-box">📝</div>
+    <div class="icon-box bottom-icon">↩️</div>
+  </aside>
+
+  <div class="container">
+    <h2>Membership Fees</h2>
+
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Status</th>
+      </tr>
+    </table>
+  </div>
+
+  <button class="pay-now" id="payBtn">Pay Now</button>
+
+  <!-- =======================
+        UPDATED POPUP
+  ======================== -->
+  <div id="paymentPopup">
+    <div class="popup-box">
+
+      <h2>Payment Details</h2>
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label>Date</label>
+          <input type="date" id="payDate">
+        </div>
+
+        <div class="field">
+          <label>Amount</label>
+          <input type="number" id="payAmount" placeholder="Enter amount">
+        </div>
+
+        <div class="field">
+          <label>Status</label>
+          <select id="payStatus">
+            <option value="Paid">Paid</option>
+            <option value="Pending">Pending</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="btn-row">
+        <button class="cancel-btn" onclick="closePopup()">Cancel</button>
+        <button class="save-btn" onclick="savePayment()">Save</button>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+  document.getElementById("payBtn").addEventListener("click", () => {
+    document.getElementById("paymentPopup").style.display = "flex";
+  });
+
+  function closePopup() {
+    document.getElementById("paymentPopup").style.display = "none";
+  }
+
+  function savePayment() {
+    let date = document.getElementById("payDate").value;
+    let amount = document.getElementById("payAmount").value;
+    let status = document.getElementById("payStatus").value;
+
+    if (!date  !amount  !status) return;
+
+    closePopup();
+  }
+</script>
+
+</body>
+</html>
