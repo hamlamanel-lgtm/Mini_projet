@@ -31,6 +31,7 @@
     overflow: hidden;
     }
 
+
     .left-panel{
         width: 50%;
         height: 100%;
@@ -112,7 +113,6 @@
 
 <div class="container">
 
-    <!-- LEFT SIDE -->
     <div class="left-panel">
         <h1>Hello, Welcome!</h1>
         <p>
@@ -121,7 +121,6 @@
         </p>
     </div>
 
-    <!-- RIGHT SIDE LOGIN -->
     <div class="right-panel">
         <h2>Login</h2>
 
@@ -151,7 +150,7 @@
 </div>
 
 <script>
-    
+
 </script>
 
 </body>
