@@ -20,7 +20,7 @@
         display:flex;
     }
 
-
+    /* LEFT SIDEBAR */
     .sidebar{
         width:90px;
         background:#a476ff;
@@ -51,7 +51,7 @@
         margin-bottom:20px;
     }
 
-
+    /* MAIN CONTENT */
     .main{
         flex:1;
         padding:25px;
@@ -117,7 +117,7 @@
         border-radius:25px;
     }
 
-
+    /* BOTTOM CARDS */
     .bottom-row{
         display:flex;
         gap:20px;
@@ -145,7 +145,7 @@
         align-items:center;
     }
 
-
+    /* RIGHT FRIENDS PANEL */
     .friends-panel{
         width:300px;
         background:#2a2a2c;
@@ -206,26 +206,26 @@
 </head>
 <body>
 
-
+<!-- SIDEBAR -->
 <div class="sidebar">
     <div class="icon-box">🔔</div>
-    <div class="icon-box">🏠</div>
+    <div class="icon-box" >🏠</div>
     <div class="icon-box">🎤</div>
-    <div class="icon-box">💲</div>
+    <div class="icon-box" onclick="window.location.href='Membership_fees.html'">💲</div>
     <div class="icon-box">👥</div>
     <div class="icon-box">📝</div>
 
-    <div class="icon-box bottom-icon">↩</div>
+    <div class="icon-box bottom-icon" onclick="window.location.href='Login.html'">↩</div>
 </div>
 
-
+<!-- MAIN -->
 <div class="main">
     <div class="main-header">
         <h2>Dashboard</h2>
 
         <div style="display:flex; align-items:center; gap:15px;">
             <div class="search-bar">🔍 Search</div>
-            <div class="profile-circle">M</div>
+            <div class="profile-circle" onclick="window.location.href='Profil.html'">P</div>
         </div>
     </div>
 
@@ -251,7 +251,7 @@
     </div>
 </div>
 
-
+<!-- FRIENDS PANEL -->
 <div class="friends-panel">
     <div class="friends-header">
         <h3>👥 Friends</h3>
@@ -268,35 +268,35 @@
         <div style="display:flex; gap:10px; align-items:center;">
             <div class="friend-circle">H</div> Hadjer Sid
         </div>
-        ✉️
+        ✉
     </div>
 
     <div class="friend-item">
         <div style="display:flex; gap:10px; align-items:center;">
             <div class="friend-circle">I</div> Iman Atmania
         </div>
-        ✉️
+        ✉
     </div>
 
     <div class="friend-item">
         <div style="display:flex; gap:10px; align-items:center;">
             <div class="friend-circle">M</div> Meriem Mennah
         </div>
-        ✉️
+        ✉
     </div>
 
     <div class="friend-item">
         <div style="display:flex; gap:10px; align-items:center;">
             <div class="friend-circle">A</div> Amina Ouakour
         </div>
-        ✉️
+        ✉
     </div>
 
     <div class="friend-item">
         <div style="display:flex; gap:10px; align-items:center;">
             <div class="friend-circle">M</div> Mountaha Rezka
         </div>
-        ✉️
+        ✉
     </div>
 </div>
 
