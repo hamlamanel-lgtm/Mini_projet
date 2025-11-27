@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Membership Fees</title>
-
   <style>
     body {
       margin: 0;
@@ -23,7 +22,7 @@
         align-items:center;
         padding-top:25px;
         gap:20px;
-        position: fixed;  
+        position: fixed;
         left: 0;
         top: 0;
         height: 96vh;
@@ -48,8 +47,12 @@
     }
 
     .container {
-      margin-left: 150px; 
+      margin-left: 150px;
       padding: 40px;
+    }
+
+    h2{
+      margin-bottom:20px;
     }
 
     table {
@@ -63,6 +66,21 @@
     table th, table td {
       padding: 18px;
       border-bottom: 1px solid #4a4a4f;
+    }
+
+    table th {
+      text-align:left;
+      font-weight:600;
+    }
+
+    .status-paid{
+      color:#4ade80;
+      font-weight:bold;
+    }
+
+    .status-unpaid{
+      color:#f97373;
+      font-weight:bold;
     }
 
     .pay-now {
@@ -79,9 +97,8 @@
     }
 
     /* =======================
-       NEW MODAL STYLE HERE
+       MODAL
     ======================== */
-
     #paymentPopup {
       display: none;
       position: fixed;
@@ -114,14 +131,17 @@
       gap: 20px;
     }
 
-    .field label {
-      font-size: 14px;
-      margin-bottom: 6px;
-      display: block;
+    .field {
+      display:flex;
+      flex-direction:column;
+      gap:6px;
     }
 
-    .field input,
-    .field select {
+    .field label {
+      font-size: 14px;
+    }
+
+    .field input {
       width: 100%;
       padding: 12px;
       background: #0f1019;
@@ -129,6 +149,11 @@
       border-radius: 10px;
       color: white;
       font-size: 14px;
+    }
+
+    .field input[readonly]{
+      opacity:0.8;
+      cursor:not-allowed;
     }
 
     .btn-row {
@@ -156,90 +181,196 @@
       background: #8b5cf6;
       color: white;
     }
+    .main-header{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+    }
+        .search-bar{
+        background:white;
+        padding:8px 15px;
+        border-radius:20px;
+        display:flex;
+        align-items:center;
+        color:#333;
+        width:180px;
+    }
+        .profile-circle{
+        width:40px;
+        height:40px;
+        border-radius:50%;
+        background:#8b5cf6;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        font-weight:bold;
+    }
   </style>
 </head>
 <body>
-<aside class="sidebar">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
     <div class="icon-box">🔔</div>
-    <div class="icon-box">🏠</div>
+    <div class="icon-box" onclick="window.location.href='dashboard.html'">🏠</div>
     <div class="icon-box">🎤</div>
-    <div class="icon-box">💲</div>
+    <div class="icon-box" onclick="window.location.href='Membership_fees.html'">💲</div>
     <div class="icon-box">👥</div>
     <div class="icon-box">📝</div>
-    <div class="icon-box bottom-icon">↩️</div>
+    <div class="icon-box bottom-icon" onclick="window.location.href='Login.html'">↩</div>
   </aside>
 
+  <!-- MAIN CONTENT -->
   <div class="container">
-    <h2>Membership Fees</h2>
+        <div class="main-header">
+        <h2>Membership Fees</h2>
 
-    <table>
+        <div style="display:flex; align-items:center; gap:15px;">
+            <div class="search-bar">🔍 Search</div>
+            <div class="profile-circle" onclick="window.location.href='Profil.html'">P</div>
+        </div>
+    </div>
+    
+
+    <table id="paymentTable">
       <tr>
-        <th>Date</th>
+        <th>Period</th>
         <th>Amount</th>
         <th>Status</th>
       </tr>
+      <!-- هنا نضيف سطر الشهر الماضي Not Paid بالجافاسكربت -->
     </table>
   </div>
 
   <button class="pay-now" id="payBtn">Pay Now</button>
 
   <!-- =======================
-        UPDATED POPUP
+        POPUP
   ======================== -->
   <div id="paymentPopup">
     <div class="popup-box">
-
       <h2>Payment Details</h2>
-
       <div class="form-grid">
-
+        <!-- مدة الشهر -->
         <div class="field">
-          <label>Date</label>
-          <input type="date" id="payDate">
+          <label>Subscription Period</label>
+          <input type="text" id="periodText" readonly>
         </div>
 
+        <!-- المبلغ -->
         <div class="field">
           <label>Amount</label>
-          <input type="number" id="payAmount" placeholder="Enter amount">
+          <input type="text" id="payAmount" readonly>
         </div>
 
+        <!-- رقم البطاقة الذهبية -->
         <div class="field">
-          <label>Status</label>
-          <select id="payStatus">
-            <option value="Paid">Paid</option>
-            <option value="Pending">Pending</option>
-          </select>
+          <label>Golden Card Number (7 digits)</label>
+          <input type="text" id="cardNumber" maxlength="7" placeholder="1234567">
         </div>
-
       </div>
 
       <div class="btn-row">
         <button class="cancel-btn" onclick="closePopup()">Cancel</button>
         <button class="save-btn" onclick="savePayment()">Save</button>
       </div>
-
     </div>
   </div>
 
 <script>
+  // ------------ Helpers for dates ------------
+  function addMonths(date, months) {
+    const d = new Date(date);
+    d.setMonth(d.getMonth() + months);
+    return d;
+  }
+
+  function formatDate(date) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    return `${y}/${m}/${d}`;
+  }
+
+  // ------------ جدول: سطر الشهر الماضي Not Paid (مثال فقط) ------------
+  function addLastMonthUnpaidRow() {
+    const today = new Date();
+    const start = addMonths(today, -1);
+    const end = today;
+
+    const period = `${formatDate(start)} → ${formatDate(end)}`;
+
+    const table = document.getElementById("paymentTable");
+    const row = table.insertRow(-1);
+    row.innerHTML = `
+      <td>${period}</td>
+      <td>500 DA</td>
+      <td class="status-unpaid">Not Paid</td>
+    `;
+  }
+
+  // ------------ فتح البوب أب ------------
   document.getElementById("payBtn").addEventListener("click", () => {
-    document.getElementById("paymentPopup").style.display = "flex";
+    openPopup();
   });
+
+  function openPopup() {
+    const today = new Date();
+    const end = addMonths(today, 1);
+
+    const periodText = `${formatDate(today)} → ${formatDate(end)}`;
+    document.getElementById("periodText").value = periodText;
+    document.getElementById("payAmount").value = "500 DA";
+    document.getElementById("cardNumber").value = "";
+
+    document.getElementById("paymentPopup").style.display = "flex";
+  }
 
   function closePopup() {
     document.getElementById("paymentPopup").style.display = "none";
   }
 
+  // ------------ حفظ الدفع في الجدول (و backend لاحقاً) ------------
   function savePayment() {
-    let date = document.getElementById("payDate").value;
-    let amount = document.getElementById("payAmount").value;
-    let status = document.getElementById("payStatus").value;
+    const period = document.getElementById("periodText").value;
+    const card = document.getElementById("cardNumber").value.trim();
 
-    if (!date  !amount  !status) return;
+    // تحقق من رقم البطاقة = 7 أرقام
+    const cardRegex = /^\d{7}$/;
+    if (!cardRegex.test(card)) {
+      alert("Golden card number must be exactly 7 digits.");
+      return;
+    }
+
+    // هنا في التطبيق الحقيقي:
+    // ترسلين البيانات للـ backend (PHP مثلاً)
+    // عبر fetch أو form:
+    //
+    // fetch('pay_membership.php', {
+    //   method: 'POST',
+    //   body: new URLSearchParams({
+    //     period_start: ...,
+    //     period_end: ...,
+    //     amount: 500,
+    //     card_number: card
+    //   })
+    // }).then(...)
+
+    // الآن فقط نضيف سطر في الجدول (واجهة أمامية)
+    const table = document.getElementById("paymentTable");
+    const row = table.insertRow(-1);
+    row.innerHTML = `
+      <td>${period}</td>
+      <td>500 DA</td>
+      <td class="status-paid">Paid</td>
+    `;
 
     closePopup();
   }
-</script>
 
+  // أول ما تفتح الصفحة أضيف سطر "شهر ماضي Not Paid" كمثال
+  window.addEventListener("DOMContentLoaded", () => {
+    addLastMonthUnpaidRow();
+  });
+</script>
 </body>
 </html>
