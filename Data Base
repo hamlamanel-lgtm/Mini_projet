@@ -1,0 +1,77 @@
+-- Club Management System Database Schema
+CREATE DATABASE IF NOT EXISTS club_management;
+USE club_management;
+
+-- Members table
+CREATE TABLE IF NOT EXISTS members (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    birthday DATE NOT NULL,
+    gender ENUM('Male', 'Female') NOT NULL,
+    join_date DATE NOT NULL,
+    role ENUM('president', 'secretary', 'treasurer', 'member') DEFAULT 'member'
+);
+
+-- Membership fees table 
+CREATE TABLE IF NOT EXISTS membership_fees (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    member_id INT NOT NULL,
+    -- نستخدم due_date كبداية فترة الاشتراك (مثلاً 2025-01-07)
+    -- و نهاية الفترة نحسبها في الواجهة: + شهر من هذا التاريخ
+    due_date DATE NOT NULL,
+    amount DECIMAL(10,2) NOT NULL DEFAULT 500.00,
+    status ENUM('Paid', 'Not Paid') DEFAULT 'Not Paid',
+    paid_date DATE NULL,
+    card_number CHAR(7) NULL,
+    FOREIGN KEY (member_id) REFERENCES members(id) ON DELETE CASCADE
+);
+
+-- Events table
+CREATE TABLE IF NOT EXISTS events (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(200) NOT NULL,
+    event_date DATE NOT NULL,
+    location VARCHAR(200) NOT NULL,
+    status ENUM('open', 'closed') DEFAULT 'open',
+    description TEXT,
+    max_participants INT
+);
+
+-- Event registrations table
+CREATE TABLE IF NOT EXISTS event_registrations (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    event_id INT NOT NULL,
+    member_id INT NOT NULL,
+    status ENUM('joined', 'not_joined') DEFAULT 'not_joined',
+    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE,
+    FOREIGN KEY (member_id) REFERENCES members(id) ON DELETE CASCADE,
+    UNIQUE KEY unique_event_member (event_id, member_id)
+);
+
+-- Insert default admin user
+INSERT INTO members (first_name, last_name, email, password_hash, birthday, gender, role, join_date)
+VALUES
+('Admin', 'President', 'admin@club.com',
+ '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+ '2000-01-01', 'Male', 'president', '2024-01-01')
+ON DUPLICATE KEY UPDATE email = email;
+
+-- Insert sample events
+INSERT INTO events (title, event_date, location, status) VALUES
+('Entrepreneurship Talk', '2025-11-20', 'Salle 1', 'open'),
+('Programming Workshop', '2025-11-25', 'Salle 5', 'open'),
+('Graphic Design Workshop', '2025-11-30', 'Salle 3', 'open'),
+('Tech trip', '2025-12-05', 'Outside', 'closed'),
+('Photography Contest', '2025-12-10', 'Salle 1', 'open');
+
+-- Insert sample fees 
+INSERT INTO membership_fees (member_id, due_date, amount, status) VALUES
+(1, '2025-07-07', 500.00, 'Not Paid'),
+(1, '2025-08-07', 500.00, 'Paid'),
+(1, '2025-09-07', 500.00, 'Paid'),
+(1, '2025-10-07', 500.00, 'Not Paid'),
+(1, '2025-11-07', 500.00, 'Not Paid');
