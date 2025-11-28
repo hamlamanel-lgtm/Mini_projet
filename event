@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body{
+            background:#1f1f22;
+            height:100vh;
+            width:100vw;
+            overflow:hidden;
+            display:flex;
+        }
+
+        .sidebar{
+            width:90px;
+            background:#a476ff;
+            border-top-right-radius:40px;
+            border-bottom-right-radius:40px;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            padding-top:25px;
+            gap:20px;
+        }
+
+        .icon-box{
+            width:55px;
+            height:55px;
+            background:#8b5cf6;
+            border-radius:18px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            cursor:pointer;
+            transition:0.2s;
+            font-size: 20px;
+        }
+
+        .icon-box:hover{ 
+            filter:brightness(1.1); 
+            transform: scale(1.05);
+        }
+
+        .bottom-icon {
+            margin-top: auto;
+            margin-bottom: 25px;
+        }
+
+        .main{
+            flex:1;
+            padding:25px;
+            color:white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom: 30px;
+        }
+
+        .header-right {
+            display:flex;
+            align-items:center;
+            gap:15px;
+        }
+
+        .search-bar{
+            background:white;
+            padding:8px 15px;
+            border-radius:25px;
+            display:flex;
+            align-items:center;
+            color:#333;
+            width:250px;
+            gap: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            background: transparent;
+            flex: 1;
+            font-size: 14px;
+        }
+
+        .search-bar input::placeholder {
+            color: #666;
+        }
+
+        .profile-circle{
+            width:45px;
+            height:45px;
+            border-radius:50%;
+            background:#8b5cf6;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-weight:bold;
+            color: white;
+            font-size: 18px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .events-table-container {
+            flex: 1;
+            overflow: auto;
+            background: #2a2a2e;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .events-table {
+            width: 100%;
+            border-collapse: collapse;
+            color: white;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .events-table th {
+            background: #8b5cf6;
+            padding: 18px;
+            text-align: left;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .events-table td {
+            padding: 18px;
+            border-bottom: 1px solid #444;
+            transition: background-color 0.3s ease;
+        }
+
+        .events-table tr {
+            transition: background-color 0.3s ease;
+        }
+
+        .events-table tr:hover {
+            background: rgba(139, 92, 246, 0.15);
+        }
+
+        .status-open {
+            color: #4ade80;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(74, 222, 128, 0.1);
+        }
+
+        .status-closed {
+            color: #f87171;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(248, 113, 113, 0.1);
+        }
+
+        .join-btn {
+            background: #8b5cf6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .join-btn:hover {
+            background: #7c3aed;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .join-btn.joined {
+            background: #4ade80;
+            cursor: default;
+            box-shadow: 0 4px 6px rgba(74, 222, 128, 0.3);
+        }
+
+        .join-btn.closed {
+            background: #6b7280;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .events-table-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .events-table-container::-webkit-scrollbar-track {
+            background: #2a2a2e;
+            border-radius: 10px;
+        }
+
+        .events-table-container::-webkit-scrollbar-thumb {
+            background: #8b5cf6;
+            border-radius: 10px;
+        }
+
+        .events-table-container::-webkit-scrollbar-thumb:hover {
+            background: #7c3aed;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="sidebar">
+    <div class="icon-box">🔔</div>
+    <div class="icon-box" onclick="window.location.href='Dashboard.html'">🏠</div>
+    <div class="icon-box">🎤</div>
+    <div class="icon-box" onclick="window.location.href='Membership_fees.html'">💲</div>
+    <div class="icon-box">👥</div>
+    <div class="icon-box">📝</div>
+    <div class="icon-box bottom-icon" onclick="window.location.href='Login.html'">↩</div>
+</div>
+
+<div class="main">
+    <div class="main-header">
+        <h2>Events</h2>
+
+        <div class="header-right">
+            <div class="search-bar">
+                <input type="text" placeholder="Search events...">
+                <span>🔍</span>
+            </div>
+
+            <div class="profile-circle" onclick="window.location.href='Profil.html'">P</div>
+        </div>
+    </div>
+
+    <div class="events-table-container">
+        <table class="events-table">
+            <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                    <th>Join</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
